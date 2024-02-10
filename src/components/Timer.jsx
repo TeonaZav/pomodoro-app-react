@@ -14,7 +14,7 @@ const renderTime = ({ remainingTime }) => {
 };
 
 const Timer = () => {
-  const { playing, handlePause, settings, setSettings } =
+  const { playing, handlePause, settings } =
     useContext(SettingsContext);
 
   return (
@@ -58,7 +58,7 @@ const StyledTimerDisplay = styled.div`
     text-align: center;
     font-size: 8rem;
     font-weight: 400;
-    letter-spacing: -10px;
+    letter-spacing: -5px;
   }
 
   .btn-pause {

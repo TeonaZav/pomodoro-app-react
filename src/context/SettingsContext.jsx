@@ -4,12 +4,9 @@ export const SettingsContext = createContext();
 
 const SettingsProvider = ({ children }) => {
   const [playing, setPlaying] = useState(false);
+  const [show, setshow] = useState(false);
 
-  const handlePause = () => {
-    setPlaying(!playing);
-  };
-
-
+  console.log(show);
 
   const [settings, setSettings] = useState({
     pomodoro: 1,
@@ -17,11 +14,31 @@ const SettingsProvider = ({ children }) => {
     longBreak: 15,
     active: "pomodoro",
     activeColor: "#70F3F8",
+    activeFont: ""
   });
 
+  const handlePause = () => {
+    setPlaying(!playing);
+  };
+
+  const showModal = () => {
+    setshow(true);
+  };
+  const closeModal = () => {
+    setshow(false);
+  };
   return (
     <SettingsContext.Provider
-      value={{ playing, setPlaying, handlePause, settings, setSettings }}
+      value={{
+        show,
+        playing,
+        setPlaying,
+        handlePause,
+        settings,
+        setSettings,
+        showModal,
+        closeModal,
+      }}
     >
       {children}
     </SettingsContext.Provider>

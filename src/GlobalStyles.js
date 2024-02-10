@@ -30,7 +30,10 @@ html {
   }
 }
 body {
-  font-family: 'Space Mono', monospace;
+  /* font-family: 'Space Mono', monospace; */
+  font-family: ${(props) => {
+      return `${props.$font}, monospace`  ;
+    }};
   margin: 0 auto;
   height: 100vh;
   max-width: 100vw;
