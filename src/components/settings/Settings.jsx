@@ -6,7 +6,7 @@ import ColorBtn from "./ColorBtn";
 import FontBtn from "./FontBtn";
 
 const Settings = () => {
-  const { settings, setSettings, closeModal, show } =
+  const { settings, setSettings, closeModal, show,  resetTimer } =
     useContext(SettingsContext);
 
   const [pomodoro, setPomodoro] = useState(1);
@@ -48,6 +48,7 @@ const Settings = () => {
       activeColor,
       activeFont
     });
+    resetTimer();
     closeModal();
   };
 

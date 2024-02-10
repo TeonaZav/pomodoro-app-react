@@ -4,7 +4,7 @@ import { SettingsContext } from "../context/SettingsContext";
 const ButtonPanel = () => {
   const [active, setActive] = useState("pomodoro");
 
-  const { settings, setSettings } = useContext(SettingsContext);
+  const { settings, setSettings, resetTimer } = useContext(SettingsContext);
 
   const handleActive = (e) => {
     setActive(e.target.value);
@@ -12,6 +12,7 @@ const ButtonPanel = () => {
     setSettings((prevSettings) => {
       return { ...prevSettings, active: activeState };
     });
+    resetTimer();
   };
 
   return (
@@ -47,6 +48,7 @@ const ButtonPanel = () => {
 export default ButtonPanel;
 
 const StyledButton = styled.button`
+  font-family: inherit;
   font-size: 1.2rem;
   font-weight: 700;
   width: 10rem;
@@ -56,10 +58,9 @@ const StyledButton = styled.button`
   cursor: pointer;
   background-color: #161932;
   color: rgba(215, 224, 255, 0.401);
+  
   &.active {
-    background-color: ${(props) => {
-      return props.$activeColor;
-    }};
+    background-color: ${(props) =>  props.$activeColor};
     color: #1e213f;
   }
 `;

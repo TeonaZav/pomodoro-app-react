@@ -5,8 +5,7 @@ export const SettingsContext = createContext();
 const SettingsProvider = ({ children }) => {
   const [playing, setPlaying] = useState(false);
   const [show, setshow] = useState(false);
-
-  console.log(show);
+  const [timerKey, setTimerKey] = useState(0); 
 
   const [settings, setSettings] = useState({
     pomodoro: 1,
@@ -14,8 +13,13 @@ const SettingsProvider = ({ children }) => {
     longBreak: 15,
     active: "pomodoro",
     activeColor: "#70F3F8",
-    activeFont: ""
+    activeFont: "Space Mono",
+   
   });
+
+  const resetTimer = () => {
+    setTimerKey(prevKey => prevKey + 1); 
+  };
 
   const handlePause = () => {
     setPlaying(!playing);
@@ -32,6 +36,8 @@ const SettingsProvider = ({ children }) => {
       value={{
         show,
         playing,
+        timerKey,
+        resetTimer,
         setPlaying,
         handlePause,
         settings,

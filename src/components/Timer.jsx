@@ -2,6 +2,7 @@ import React, { createContext, useContext, useState } from "react";
 import { styled } from "styled-components";
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
 import { SettingsContext } from "../context/SettingsContext";
+
 const renderTime = ({ remainingTime }) => {
   const mins =
     Math.floor((remainingTime % 3600) / 60) >= 10
@@ -14,12 +15,12 @@ const renderTime = ({ remainingTime }) => {
 };
 
 const Timer = () => {
-  const { playing, handlePause, settings } =
-    useContext(SettingsContext);
+  const { playing, handlePause, settings, timerKey } = useContext(SettingsContext);
 
   return (
     <StyledTimerDisplay>
       <CountdownCircleTimer
+      key={timerKey}
         size={267}
         isPlaying={playing}
         isGrowing

@@ -2,7 +2,6 @@ import { styled } from "styled-components";
 import IconCheck from "./../../assets/icon-check.png";
 
 const ColorBtn = ({ color, activeColor, id, handleChange, ...props }) => {
-
   return (
     <ColorButton $color={color}>
       <input
@@ -26,7 +25,7 @@ export default ColorBtn;
 const ColorButton = styled.div`
   width: 4em;
   height: 4rem;
-
+  cursor: pointer;
   label {
     display: inline-block;
     border-radius: 50%;
@@ -41,17 +40,18 @@ const ColorButton = styled.div`
     content: "";
     position: absolute;
     border-radius: 50%;
+    cursor: pointer;
   }
+
   input[type="radio"] + label {
-    background-color: ${(props) => {
-      return props.$color;
-    }};
+    background-color: ${(props) => props.$color};
     color: #1e213f;
-    img{
-      width:1.6rem;
+    img {
+      width: 1.6rem;
       height: 1.4rem;
       margin-top: 1.4rem;
     }
+    cursor: pointer;
   }
 
   input[type="radio"] {
