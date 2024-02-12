@@ -58,10 +58,14 @@ const StyledButton = styled.button`
   cursor: pointer;
   background-color: #161932;
   color: rgba(215, 224, 255, 0.401);
-  
+
   &.active {
-    background-color: ${(props) =>  props.$activeColor};
+    background-color: ${(props) => props.$activeColor};
     color: #1e213f;
+  }
+  @media (min-width: 48em) {
+    width: 12rem;
+    font-size: 1.4rem;
   }
 `;
 
@@ -74,4 +78,8 @@ const StyledPanel = styled.div`
   justify-content: center;
   align-items: center;
   margin-bottom: 4.8rem;
+
+  @media (min-width: 48em) {
+    width: 41rem;
+  }
 `;

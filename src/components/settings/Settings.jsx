@@ -6,7 +6,7 @@ import ColorBtn from "./ColorBtn";
 import FontBtn from "./FontBtn";
 
 const Settings = () => {
-  const { settings, setSettings, closeModal, show,  resetTimer } =
+  const { settings, setSettings, closeModal, show, resetTimer } =
     useContext(SettingsContext);
 
   const [pomodoro, setPomodoro] = useState(1);
@@ -16,7 +16,6 @@ const Settings = () => {
   const [activeFont, setActiveFont] = useState("Space Mono");
 
   const handleChange = (e) => {
-    e.preventDefault();
     const { name, value } = e.target;
     console.log(name, value);
     switch (name) {
@@ -46,7 +45,7 @@ const Settings = () => {
       shortBreak,
       longBreak,
       activeColor,
-      activeFont
+      activeFont,
     });
     resetTimer();
     closeModal();
@@ -62,8 +61,8 @@ const Settings = () => {
       </SettingsHeader>
 
       <SettingsForm onSubmit={handleSubmit}>
+        <h3>TIME (MINUTES)</h3>
         <div className="input-wrapper">
-          <h3>TIME (MINUTES)</h3>
           <TextBox>
             <label htmlFor="pomodoro">pomodoro</label>
             <input
@@ -100,7 +99,7 @@ const Settings = () => {
         </div>
         <SmallCt>
           <h3>FONTS</h3>
-          <div>
+          <div className="radio-buttons">
             <FontBtn
               id="font1"
               value="Kumbh Sans"
@@ -126,7 +125,7 @@ const Settings = () => {
         </SmallCt>
         <SmallCt>
           <h3>COLOR</h3>
-          <div>
+          <div className="radio-buttons">
             <ColorBtn
               id="red"
               value="#F87070"
@@ -166,20 +165,28 @@ const SettingsModal = styled.div`
   position: fixed;
   left: 50%;
   top: 50%;
-
   transform: translate(-50%, -50%) scale(1);
   width: 32.7rem;
   height: 57.5rem;
+  display: flex;
+  flex-direction: column;
+
   background-color: #ffffff;
   border-radius: 1.5rem;
   transition: opacity 0.5s ease-out, transform 1.1s ease-out,
     visibility 0.5s ease-out;
   opacity: 1;
   visibility: visible;
+
   &.hidden {
     opacity: 0;
     visibility: hidden;
     transform: translate(-50%, -50%) scale(0.95);
+  }
+
+  @media (min-width: 48em) {
+    width: 54rem;
+    height: 49rem;
   }
 `;
 
@@ -188,7 +195,8 @@ const SettingsHeader = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 2.4rem;
-
+  height: 10%;
+  font-size: 1.6rem;
   .btn-close {
     border: none;
     background-color: transparent;
@@ -197,16 +205,41 @@ const SettingsHeader = styled.div`
 `;
 
 const SettingsForm = styled.form`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
   width: 100%;
+  height: 90%;
   box-sizing: border-box;
-  padding: 2.4rem;
+  padding: 1rem 2.4rem 0 2.4rem;
   border-top: 1px solid rgba(0, 0, 0, 0.043);
   text-align: center;
+
   h3 {
     font-weight: 400;
     font-size: 1.4rem;
     line-height: 0;
-    margin-bottom:2.4rem;
+    margin-bottom: 2.4rem;
+  }
+  .input-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.6rem;
+  }
+
+  @media (min-width: 48em) {
+    padding: 1.6rem 2.4rem 0 2.4rem;
+    .input-wrapper {
+      flex-direction: row;
+      justify-content: space-between;
+    }
+    h3 {
+      align-self: flex-start;
+      font-size: 1.6rem;
+      font-weight: 500;
+    }
   }
 `;
 
@@ -215,6 +248,7 @@ const TextBox = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 1rem;
   margin-bottom: 1rem;
 
   input {
@@ -228,37 +262,65 @@ const TextBox = styled.div`
     box-sizing: border-box;
   }
 
-  input[type="number"]::-webkit-inner-spin-button,
-  input[type="number"]::-webkit-outer-spin-button {
-    opacity: 0.5;
-    margin: 0;
+  label {
+    color: #999999;
+    font-size: 1.2rem;
+    align-self: flex-start;
+  }
+
+  @media (min-width: 48em) {
+    width: 14rem;
+    flex-direction: column;
+    input {
+      width: 100%;
+      height: 4.8rem;
+    }
   }
 `;
 
 const SmallCt = styled.div`
+  box-sizing: border-box;
   width: 100%;
+  height: 10rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding-block: 1rem;
   border-top: 1px solid rgba(0, 0, 0, 0.043);
   text-align: center;
-padding-block:1.6rem;
-  div {
+
+  .radio-buttons {
     width: 70%;
     display: flex;
     justify-content: center;
-    margin: 0 auto;
+    gap: 1.6rem;
+  }
+
+  @media (min-width: 48em) {
+    flex-direction: row;
+    height: 9rem;
+    padding-block: 1.6rem;
+    .radio-buttons {
+      width: 30%;
+    }
   }
 `;
 
 const ButtonApply = styled.button`
   width: 14rem;
   height: 5.3rem;
-  background-color: #f87070;
-  color: #ffffff;
   font-weight: 600;
   border-radius: 2rem;
   border: none;
   cursor: pointer;
-  margin-top: 2rem;
+  overflow: hidden;
+  pointer-events: auto;
+  transform: translateY(50%);
+  background-color: #f87070;
+  color: #ffffff;
   &:hover {
+    cursor: pointer;
     background-color: #ed7777;
   }
 `;
