@@ -9,10 +9,8 @@ This is a solution to the [Pomodoro app challenge on Frontend Mentor](https://ww
   - [Screenshot](#screenshot)
 - [My process](#my-process)
   - [Built with](#built-with)
-- [Author](#author)
-- [Acknowledgments](#acknowledgments)
 
-**Note: Delete this note and update the table of contents based on what sections you keep.**
+
 
 ## Overview
 
@@ -47,18 +45,9 @@ Users should be able to:
 ## Built with
 
 - React JS
-- TypeScript
 - styled-components
 
-## Installing 🔍
 
-To install this application:
-
-```
-npm install
-npm start
-
-```
 
 ##
 
