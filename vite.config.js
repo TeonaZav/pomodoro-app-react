@@ -6,6 +6,6 @@ export default defineConfig({
   plugins: [react()],
   base: '/pomodoro-app-react/',
   build: {
-    outDir: "docs",
+    outDir: "dist",
   },
 });
